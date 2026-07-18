@@ -1,8 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://dominicarringtonfloral.com/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/01.jpg</image:loc>
+      <image:caption>Peony and anemone arrangement in a white vase</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/02.jpg</image:loc>
+      <image:caption>Floral runner along a set dining table</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/09.jpg</image:loc>
+      <image:caption>Lilacs in a white vase</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/18.jpg</image:loc>
+      <image:caption>Coral ranunculus and sweet peas by the fireplace</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/16.jpg</image:loc>
+      <image:caption>A meadow of bud vases — cosmos, nigella, and scabiosa</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/08.jpg</image:loc>
+      <image:caption>Cream garden roses in a white vase</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/06.jpg</image:loc>
+      <image:caption>Garden roses and scented geranium on a sun porch</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/25.jpg</image:loc>
+      <image:caption>Crimson carnations in a silver bowl for the holidays</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/10.jpg</image:loc>
+      <image:caption>Sweet peas, campanula, and peonies on an antique chest</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/17.jpg</image:loc>
+      <image:caption>Sweet peas, snapdragons, and ranunculus in a stone urn</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/23.jpg</image:loc>
+      <image:caption>Spring arrangements down a family table</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/03.jpg</image:loc>
+      <image:caption>Garden roses and sweet peas</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/13.jpg</image:loc>
+      <image:caption>Anemones and ranunculus, up close</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/24.jpg</image:loc>
+      <image:caption>Ruffled pansies in a stone planter</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/12.jpg</image:loc>
+      <image:caption>Butter ranunculus in a teal bud vase</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/05.jpg</image:loc>
+      <image:caption>Wildflower arrangement with sweet peas and geum</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/11.jpg</image:loc>
+      <image:caption>Ranunculus bud vases along a private dining table</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/15.jpg</image:loc>
+      <image:caption>Peonies, ranunculus, and lisianthus in full color</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/14.jpg</image:loc>
+      <image:caption>Zinnias and carnations from above</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://dominicarringtonfloral.com/04.jpg</image:loc>
+      <image:caption>Hanging floral sphere among branches</image:caption>
+    </image:image>
   </url>
 </urlset>
