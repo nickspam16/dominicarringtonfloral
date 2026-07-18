@@ -119,7 +119,7 @@
 <header>
   <h1>DOMINI CARRINGTON</h1>
   <p>Florist · Los Angeles</p>
-  <a class="inquire" href="mailto:hello@dominicarringtonfloral.com">Inquire</a>
+  <a class="inquire" href="mailto:hello@dominicarringtonfloral.com?subject=Inquiry%20via%20dominicarringtonfloral.com">Inquire</a>
 </header>
 
 <main>
@@ -150,7 +150,7 @@
 
 <footer id="contact">
   <div class="contact">
-    <a href="mailto:hello@dominicarringtonfloral.com">hello@dominicarringtonfloral.com</a>
+    <a href="mailto:hello@dominicarringtonfloral.com?subject=Inquiry%20via%20dominicarringtonfloral.com">hello@dominicarringtonfloral.com</a>
     <a href="tel:+13108662486">(310) 866-2486</a>
     <a href="https://www.instagram.com/dominicarringtonfloral" target="_blank" rel="noopener">@dominicarringtonfloral</a>
   </div>
@@ -186,6 +186,76 @@
   // Lazy-load any real photos automatically
   document.querySelectorAll('.tile img').forEach(function(i){ i.loading='lazy'; });
 
+
+  /* ---- First-party analytics (cookieless, anonymous) ----
+     Events land in a private database only we can read.
+     No cookies, no cross-visit tracking, no personal data. */
+  var live = location.protocol.indexOf('http') === 0 && location.hostname !== 'localhost' && !navigator.webdriver;
+  var API = 'https://mtnkkeftmcfxeygkbkja.supabase.co/rest/v1/floral_site_events';
+  var KEY = 'sb_publishable_OipEgSTTKx0LBNM4Am2wiA_9Ogx0lQh';
+  function uuid(){
+    if (crypto.randomUUID) return crypto.randomUUID();
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c){
+      var r=Math.random()*16|0; return (c==='x'?r:(r&0x3|0x8)).toString(16);
+    });
+  }
+  var SID = uuid(), t0 = Date.now(), maxScroll = 0, lbOpenedAt = 0, lbIndex = null, ended = false;
+  function send(event, detail){
+    if (!live) return;
+    try {
+      fetch(API, {
+        method: 'POST',
+        keepalive: true,
+        headers: { 'apikey': KEY, 'Authorization': 'Bearer ' + KEY, 'Content-Type': 'application/json', 'Prefer': 'return=minimal' },
+        body: JSON.stringify({
+          session_id: SID, event: event, detail: detail || {},
+          path: location.pathname,
+          referrer: (document.referrer || '').slice(0, 300) || null,
+          ua: navigator.userAgent.slice(0, 300),
+          viewport: innerWidth + 'x' + innerHeight,
+          lang: navigator.language
+        })
+      }).catch(function(){});
+    } catch (e) {}
+  }
+
+  send('pageview');
+
+  tiles.forEach(function(t, i){
+    t.addEventListener('click', function(){
+      send('tile_click', { tile: i + 1, has_photo: !!t.querySelector('img') });
+    });
+  });
+
+  document.querySelector('.grid').addEventListener('click', function(ev){
+    var tile = ev.target.closest('.tile');
+    if (tile && tile.querySelector('img')) { lbOpenedAt = Date.now(); lbIndex = tiles.indexOf(tile) + 1; }
+  });
+  lb.addEventListener('click', function(){
+    if (lbOpenedAt) { send('lightbox_view', { tile: lbIndex, seconds: Math.round((Date.now() - lbOpenedAt) / 1000) }); lbOpenedAt = 0; }
+  });
+
+  // Contact intent — the numbers that matter for the business
+  document.querySelectorAll('.contact a, .inquire').forEach(function(a){
+    a.addEventListener('click', function(){
+      var ev = a.href.indexOf('mailto:') === 0 ? 'email_click' : (a.href.indexOf('tel:') === 0 ? 'phone_click' : 'instagram_click');
+      send(ev, { placement: a.className === 'inquire' ? 'header' : 'footer' });
+    });
+  });
+
+  addEventListener('scroll', function(){
+    var d = document.documentElement;
+    var pct = Math.round((scrollY + innerHeight) / d.scrollHeight * 100);
+    if (pct > maxScroll) maxScroll = Math.min(pct, 100);
+  }, { passive: true });
+
+  function endSession(){
+    if (ended) return; ended = true;
+    if (lbOpenedAt) send('lightbox_view', { tile: lbIndex, seconds: Math.round((Date.now() - lbOpenedAt) / 1000) });
+    send('session_end', { seconds: Math.round((Date.now() - t0) / 1000), max_scroll_pct: maxScroll });
+  }
+  addEventListener('pagehide', endSession);
+  document.addEventListener('visibilitychange', function(){ if (document.visibilityState === 'hidden') endSession(); });
 })();
 </script>
 
